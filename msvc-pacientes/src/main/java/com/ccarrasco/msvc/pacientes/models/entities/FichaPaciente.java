@@ -1,4 +1,4 @@
-package com.ccarrasco.msvc.pacientes.models;
+package com.ccarrasco.msvc.pacientes.models.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

@@ -2,10 +2,9 @@ package com.ccarrasco.msvc.pacientes.services;
 
 import com.ccarrasco.msvc.pacientes.dtos.FichaPacienteCreationDTO;
 import com.ccarrasco.msvc.pacientes.exceptions.FichaPacienteException;
-import com.ccarrasco.msvc.pacientes.models.FichaPaciente;
-import com.ccarrasco.msvc.pacientes.models.Paciente;
+import com.ccarrasco.msvc.pacientes.models.entities.FichaPaciente;
+import com.ccarrasco.msvc.pacientes.models.entities.Paciente;
 import com.ccarrasco.msvc.pacientes.repositories.FichaPacienteRepository;
-import com.ccarrasco.msvc.pacientes.repositories.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

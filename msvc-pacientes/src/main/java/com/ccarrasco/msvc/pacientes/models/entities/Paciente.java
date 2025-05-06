@@ -1,4 +1,4 @@
-package com.ccarrasco.msvc.pacientes.models;
+package com.ccarrasco.msvc.pacientes.models.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -38,7 +38,7 @@ public class Paciente {
 
     private String correo;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "id_prevision")
     @NotNull(message = "El campo id_tipo_usuario no puede ser vacio")
-    private Long idTipoUsuario;
+    private Long idPrevision;
 }

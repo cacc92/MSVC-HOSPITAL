@@ -1,7 +1,7 @@
 package com.ccarrasco.msvc.pacientes.services;
 
 import com.ccarrasco.msvc.pacientes.dtos.FichaPacienteCreationDTO;
-import com.ccarrasco.msvc.pacientes.models.FichaPaciente;
+import com.ccarrasco.msvc.pacientes.models.entities.FichaPaciente;
 
 import java.util.List;
 

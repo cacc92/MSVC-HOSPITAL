@@ -1,9 +1,8 @@
 package com.ccarrasco.msvc.pacientes.controllers;
 
 import com.ccarrasco.msvc.pacientes.dtos.FichaPacienteCreationDTO;
-import com.ccarrasco.msvc.pacientes.models.FichaPaciente;
+import com.ccarrasco.msvc.pacientes.models.entities.FichaPaciente;
 import com.ccarrasco.msvc.pacientes.services.FichaPacienteService;
-import com.ccarrasco.msvc.pacientes.services.PacienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

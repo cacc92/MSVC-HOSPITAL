@@ -1,11 +1,10 @@
 package com.ccarrasco.msvc.pacientes.controllers;
 
-import com.ccarrasco.msvc.pacientes.models.Paciente;
+import com.ccarrasco.msvc.pacientes.models.entities.Paciente;
 import com.ccarrasco.msvc.pacientes.services.PacienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

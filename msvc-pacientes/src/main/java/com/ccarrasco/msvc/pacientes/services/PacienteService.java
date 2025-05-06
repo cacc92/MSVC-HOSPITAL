@@ -1,6 +1,6 @@
 package com.ccarrasco.msvc.pacientes.services;
 
-import com.ccarrasco.msvc.pacientes.models.Paciente;
+import com.ccarrasco.msvc.pacientes.models.entities.Paciente;
 
 import java.util.List;
 
