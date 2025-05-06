@@ -5,6 +5,7 @@ import com.ccarrasco.msvc.pacientes.exceptions.PacienteException;
 import com.ccarrasco.msvc.pacientes.models.Prevision;
 import com.ccarrasco.msvc.pacientes.models.entities.Paciente;
 import com.ccarrasco.msvc.pacientes.repositories.PacienteRepository;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,11 @@ public class PacienteServiceImpl implements PacienteService {
 
     @Override
     public Paciente save(Paciente paciente) {
-        Prevision prevision = this.previsionClientRest.findById(paciente.getIdPrevision());
-        return this.pacienteRepository.save(paciente);
+        try {
+            Prevision prevision = this.previsionClientRest.findById(paciente.getIdPrevision());
+            return this.pacienteRepository.save(paciente);
+        }catch (FeignException ex) {
+            throw new PacienteException(ex.getMessage());
+        }
     }
 }
