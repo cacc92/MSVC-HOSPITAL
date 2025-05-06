@@ -16,6 +16,7 @@
     <modules>
         <module>msvc-pacientes</module>
         <module>msvc-medicos</module>
+        <module>msvc-prevision</module>
     </modules>
     <properties>
         <java.version>21</java.version>
