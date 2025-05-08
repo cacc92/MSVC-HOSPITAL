@@ -9,5 +9,7 @@ public interface AtencionService {
     List<Atencion> findAll();
     Atencion findById(Long id);
     Atencion save(Atencion atencion);
+    List<Atencion> findByIdPaciente(Long idPaciente);
+    List<Atencion> findByIdMedico(Long idMedico);
 
 }

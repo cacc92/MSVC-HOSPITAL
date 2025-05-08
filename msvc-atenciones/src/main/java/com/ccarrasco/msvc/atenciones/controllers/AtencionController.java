@@ -33,4 +33,15 @@ public class AtencionController {
     public ResponseEntity<Atencion> save(@RequestBody @Valid Atencion atencion) {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.atencionService.save(atencion));
     }
+
+    @GetMapping("/medico/{id}")
+    public ResponseEntity<List<Atencion>> findByIdMedico(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.atencionService.findByIdMedico(id));
+    }
+
+    @GetMapping("/paciente/{id}")
+    public ResponseEntity<List<Atencion>> findByIdPaciente(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.atencionService.findByIdPaciente(id));
+    }
+
 }
