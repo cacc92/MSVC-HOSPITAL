@@ -41,4 +41,5 @@ public class PacienteServiceImpl implements PacienteService {
             throw new PacienteException(ex.getMessage());
         }
     }
+
 }

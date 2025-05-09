@@ -1,5 +1,6 @@
 package com.ccarrasco.msvc.atenciones.controllers;
 
+import com.ccarrasco.msvc.atenciones.dtos.AtencionDTO;
 import com.ccarrasco.msvc.atenciones.models.Atencion;
 import com.ccarrasco.msvc.atenciones.services.AtencionService;
 import jakarta.validation.Valid;
@@ -20,7 +21,7 @@ public class AtencionController {
     private AtencionService atencionService;
 
     @GetMapping
-    public ResponseEntity<List<Atencion>> findAll() {
+    public ResponseEntity<List<AtencionDTO>> findAll() {
         return ResponseEntity.status(HttpStatus.OK).body(this.atencionService.findAll());
     }
 
@@ -34,14 +35,16 @@ public class AtencionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.atencionService.save(atencion));
     }
 
-    @GetMapping("/medico/{id}")
-    public ResponseEntity<List<Atencion>> findByIdMedico(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(this.atencionService.findByIdMedico(id));
-    }
+    // Estos metodos nos permitiran mostrar las atenciones filtradas par aun paciente
 
     @GetMapping("/paciente/{id}")
     public ResponseEntity<List<Atencion>> findByIdPaciente(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(this.atencionService.findByIdPaciente(id));
+        return ResponseEntity.status(HttpStatus.OK).body(this.atencionService.findByPacienteId(id));
+    }
+
+    @GetMapping("/medico/{id}")
+    public ResponseEntity<List<Atencion>> findByIdMedico(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.atencionService.findByMedicoId(id));
     }
 
 }

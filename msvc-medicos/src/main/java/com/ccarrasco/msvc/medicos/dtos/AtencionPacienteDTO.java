@@ -1,4 +1,4 @@
-package com.ccarrasco.msvc.atenciones.dtos;
+package com.ccarrasco.msvc.medicos.dtos;
 
 import com.ccarrasco.msvc.atenciones.models.Medico;
 import lombok.*;
@@ -15,6 +15,7 @@ public class AtencionPacienteDTO {
     private LocalDateTime horaAtencion;
     private Integer costo;
     private String comentario;
-    private Medico medico;
+    private MedicoDTO medico;
+
 
 }
