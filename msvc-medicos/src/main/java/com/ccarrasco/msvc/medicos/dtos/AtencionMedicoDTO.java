@@ -1,4 +1,4 @@
-package com.ccarrasco.msvc.pacientes.dtos;
+package com.ccarrasco.msvc.medicos.dtos;
 
 import lombok.*;
 

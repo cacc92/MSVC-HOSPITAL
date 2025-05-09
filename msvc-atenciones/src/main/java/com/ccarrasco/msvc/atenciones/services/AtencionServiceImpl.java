@@ -5,7 +5,7 @@ import com.ccarrasco.msvc.atenciones.clients.PacienteClientRest;
 import com.ccarrasco.msvc.atenciones.clients.PrevisionClientRest;
 import com.ccarrasco.msvc.atenciones.dtos.*;
 import com.ccarrasco.msvc.atenciones.exceptions.AtencionException;
-import com.ccarrasco.msvc.atenciones.models.Atencion;
+import com.ccarrasco.msvc.atenciones.models.entities.Atencion;
 import com.ccarrasco.msvc.atenciones.models.Medico;
 import com.ccarrasco.msvc.atenciones.models.Paciente;
 import com.ccarrasco.msvc.atenciones.models.Prevision;

@@ -1,4 +1,4 @@
-package com.ccarrasco.msvc.atenciones.models;
+package com.ccarrasco.msvc.atenciones.models.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

@@ -1,7 +1,7 @@
 package com.ccarrasco.msvc.atenciones.controllers;
 
 import com.ccarrasco.msvc.atenciones.dtos.AtencionDTO;
-import com.ccarrasco.msvc.atenciones.models.Atencion;
+import com.ccarrasco.msvc.atenciones.models.entities.Atencion;
 import com.ccarrasco.msvc.atenciones.services.AtencionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
 package com.ccarrasco.msvc.pacientes.controllers;
 
+import com.ccarrasco.msvc.pacientes.dtos.AtencionPacienteDTO;
 import com.ccarrasco.msvc.pacientes.models.entities.Paciente;
 import com.ccarrasco.msvc.pacientes.services.PacienteService;
 import jakarta.validation.Valid;
@@ -35,6 +36,11 @@ public class PacienteController {
     public ResponseEntity<Paciente> save(@Valid @RequestBody Paciente paciente) {
         Paciente saved = this.pacienteService.save(paciente);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+    }
+
+    @GetMapping("/{id}/atenciones")
+    public ResponseEntity<List<AtencionPacienteDTO>> findAtencionesById(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.pacienteService.findAtencionesByPacienteId(id));
     }
 
 

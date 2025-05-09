@@ -1,7 +1,7 @@
 package com.ccarrasco.msvc.atenciones.services;
 
 import com.ccarrasco.msvc.atenciones.dtos.AtencionDTO;
-import com.ccarrasco.msvc.atenciones.models.Atencion;
+import com.ccarrasco.msvc.atenciones.models.entities.Atencion;
 
 import java.util.List;
 
