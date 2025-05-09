@@ -1,12 +1,12 @@
 package com.ccarrasco.msvc.medicos.controllers;
 
-import com.ccarrasco.msvc.medicos.models.Medico;
+import com.ccarrasco.msvc.medicos.dtos.AtencionMedicoDTO;
+import com.ccarrasco.msvc.medicos.models.entities.Medico;
 import com.ccarrasco.msvc.medicos.services.MedicoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,4 +41,9 @@ public class MedicoController {
                 .body(this.medicoService.save(medico));
     }
 
+
+    @GetMapping("/{id}/atenciones")
+    public ResponseEntity<List<AtencionMedicoDTO>> findAtencionesById(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.medicoService.findAtencionesById(id));
+    }
 }
