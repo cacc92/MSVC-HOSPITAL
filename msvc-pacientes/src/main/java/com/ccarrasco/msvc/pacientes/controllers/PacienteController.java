@@ -1,6 +1,7 @@
 package com.ccarrasco.msvc.pacientes.controllers;
 
 import com.ccarrasco.msvc.pacientes.dtos.AtencionPacienteDTO;
+import com.ccarrasco.msvc.pacientes.dtos.PacienteTotalAtencionesDTO;
 import com.ccarrasco.msvc.pacientes.models.entities.Paciente;
 import com.ccarrasco.msvc.pacientes.services.PacienteService;
 import jakarta.validation.Valid;
@@ -41,6 +42,11 @@ public class PacienteController {
     @GetMapping("/{id}/atenciones")
     public ResponseEntity<List<AtencionPacienteDTO>> findAtencionesById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(this.pacienteService.findAtencionesByPacienteId(id));
+    }
+
+    @GetMapping("/{id}/total-atenciones")
+    public ResponseEntity<List<PacienteTotalAtencionesDTO>> findTotalAtencionesById(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.pacienteService.findTotalAtencionesById(id));
     }
 
 

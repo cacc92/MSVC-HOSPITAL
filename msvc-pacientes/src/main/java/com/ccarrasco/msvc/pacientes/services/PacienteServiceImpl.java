@@ -5,6 +5,7 @@ import com.ccarrasco.msvc.pacientes.clients.MedicoClientRest;
 import com.ccarrasco.msvc.pacientes.clients.PrevisionClientRest;
 import com.ccarrasco.msvc.pacientes.dtos.AtencionPacienteDTO;
 import com.ccarrasco.msvc.pacientes.dtos.MedicoDTO;
+import com.ccarrasco.msvc.pacientes.dtos.PacienteTotalAtencionesDTO;
 import com.ccarrasco.msvc.pacientes.exceptions.PacienteException;
 import com.ccarrasco.msvc.pacientes.models.Atencion;
 import com.ccarrasco.msvc.pacientes.models.Medico;
@@ -88,6 +89,31 @@ public class PacienteServiceImpl implements PacienteService {
             }).toList();
         }
         return List.of();
+    }
+
+    @Override
+    public PacienteTotalAtencionesDTO findTotalAtencionesById(Long idPaciente) {
+        // Con esto nos aseguramos que el paciente realmente exista en caso que no exista se ejecutara una excepcion
+        Paciente paciente = this.findById(idPaciente);
+        List<Atencion>  atenciones = this.atencionClientRest.findByIdPaciente(idPaciente);
+        double total = 0.0;
+        for (Atencion atencion : atenciones) {
+            total = total + atencion.getCosto();
+        }
+        PacienteTotalAtencionesDTO dto = new PacienteTotalAtencionesDTO();
+        dto.setTotalAtenciones(total);
+
+        try{
+            dto.setPrevision(this.previsionClientRest.findById(paciente.getIdPrevision()).getNombre());
+        }catch (FeignException ex) {
+            throw new PacienteException("Al momento de generar monto  de atenciones de paciente se " +
+                    "encontro el paciente con id "+ paciente.getIdPaciente()+" presenta una prevision " +
+                    "que no existe y su id es "+ paciente.getIdPaciente());
+        }
+
+        dto.setRun(paciente.getRun());
+        dto.setNombreCompleto(paciente.getNombres()+" "+paciente.getApellidos());
+        return dto;
     }
 
 }
