@@ -45,7 +45,7 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}/total-atenciones")
-    public ResponseEntity<List<PacienteTotalAtencionesDTO>> findTotalAtencionesById(@PathVariable Long id) {
+    public ResponseEntity<PacienteTotalAtencionesDTO> findTotalAtencionesById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(this.pacienteService.findTotalAtencionesById(id));
     }
 
