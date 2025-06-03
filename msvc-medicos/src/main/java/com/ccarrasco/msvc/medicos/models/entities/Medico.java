@@ -27,4 +27,9 @@ public class Medico {
 
     private String especialidad;
 
+    public Medico(String runMedico, String nombreCompleto, String especialidad) {
+        this.runMedico = runMedico;
+        this.nombreCompleto = nombreCompleto;
+        this.especialidad = especialidad.toUpperCase();
+    }
 }
