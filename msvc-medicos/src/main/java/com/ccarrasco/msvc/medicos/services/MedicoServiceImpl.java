@@ -41,6 +41,7 @@ public class MedicoServiceImpl implements MedicoService {
         return medicoRepository.findById(id).orElseThrow(
                 () -> new MedicoException("El medico con id " + id + " no se encuentra en la base de datos")
         );
+
     }
 
     @Override
