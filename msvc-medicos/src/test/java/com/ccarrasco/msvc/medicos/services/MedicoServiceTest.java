@@ -75,19 +75,19 @@ public class MedicoServiceTest {
     @Test
     @DisplayName("Debe buscar un medico")
     public void shouldFindById(){
-        when(medicoRepository.findById(1L)).thenReturn(Optional.of(medicoPrueba));
+        when(medicoRepository.findById(Long.valueOf(1L))).thenReturn(Optional.of(medicoPrueba));
 
-        Medico result = medicoService.findById(1L);
+        Medico result = medicoService.findById(Long.valueOf(1L));
         assertThat(result).isNotNull();
         assertThat(result).isEqualTo(medicoPrueba);
-        verify(medicoRepository, times(1)).findById(1L);
+        verify(medicoRepository, times(1)).findById(Long.valueOf(1L));
 
     }
 
     @Test
     @DisplayName("Debe buscar un medico un I que n existe")
     public void shouldNotFindMedicoId(){
-        Long idInexistente = 999L;
+        Long idInexistente = (Long) 999L;
         when(medicoRepository.findById(idInexistente)).thenReturn(Optional.empty());
         assertThatThrownBy(()->{
             medicoService.findById(idInexistente);
