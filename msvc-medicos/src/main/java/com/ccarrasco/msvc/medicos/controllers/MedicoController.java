@@ -3,6 +3,11 @@ package com.ccarrasco.msvc.medicos.controllers;
 import com.ccarrasco.msvc.medicos.dtos.AtencionMedicoDTO;
 import com.ccarrasco.msvc.medicos.models.entities.Medico;
 import com.ccarrasco.msvc.medicos.services.MedicoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,12 +20,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/medicos")
 @Validated
+@Tag(name = "Medicos", description = "Operaciones relacionados con medicos")
 public class MedicoController {
 
     @Autowired
     private MedicoService medicoService;
 
     @GetMapping
+    @Operation(summary = "Obtiene todos los medicos", description = "Obtiene una lista de medicos")
+    @ApiResponses(value = {
+            // Aca se ingresand todas las posibles respuestas que puede entregar el metodo
+            @ApiResponse(responseCode = "200", description = "Operacion existosa")
+    })
     public ResponseEntity<List<Medico>> findAll() {
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -28,6 +39,13 @@ public class MedicoController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Obtiene un medico", description = "Obtiene un medico buscado a través de su ID")
+    @ApiResponses(value = {
+            // Aca se ingresand todas las posibles respuestas que puede entregar el metodo
+            @ApiResponse(responseCode = "200", description = "Operacion existosa"),
+            @ApiResponse(responseCode = "404", description = "No existe medico con ese id")
+    })
+    @Parameter(description = "Identificador de medico", required = true)
     public ResponseEntity<Medico> findById(@PathVariable Long id) {
         return ResponseEntity
                 .status(HttpStatus.OK)
