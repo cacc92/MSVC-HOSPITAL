@@ -11,6 +11,9 @@ import com.ccarrasco.msvc.medicos.models.Paciente;
 import com.ccarrasco.msvc.medicos.models.entities.Medico;
 import com.ccarrasco.msvc.medicos.repositories.MedicoRepository;
 import feign.FeignException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,8 @@ import java.util.List;
 
 @Service
 public class MedicoServiceImpl implements MedicoService {
+
+    private static final Logger log = LoggerFactory.getLogger(MedicoServiceImpl.class);
 
     @Autowired
     private MedicoRepository medicoRepository;
@@ -46,7 +51,12 @@ public class MedicoServiceImpl implements MedicoService {
 
     @Override
     public Medico save(Medico medico) {
-        return medicoRepository.save(medico);
+        log.error(String.valueOf(medico.getIdMedico()));
+        if(medicoRepository.findByRunMedico(medico.getRunMedico()).isEmpty() && medicoRepository.findById(medico.getIdMedico()).isEmpty()) {
+            return medicoRepository.save(medico);
+        }else{
+            throw new MedicoException("El medico con rut o id "+medico.getRunMedico()+" ya existe en la base de datos");
+        }
     }
 
     @Override

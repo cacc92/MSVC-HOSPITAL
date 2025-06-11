@@ -1,11 +1,15 @@
 package com.ccarrasco.msvc.medicos.controllers;
 
 import com.ccarrasco.msvc.medicos.dtos.AtencionMedicoDTO;
+import com.ccarrasco.msvc.medicos.dtos.ErrorDTO;
 import com.ccarrasco.msvc.medicos.models.entities.Medico;
 import com.ccarrasco.msvc.medicos.services.MedicoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -42,7 +46,14 @@ public class MedicoController {
     @Operation(summary = "Obtiene un medico", description = "A través del id suministrado devuelve el medico con esa id")
     @ApiResponses( value = {
             @ApiResponse(responseCode = "200", description = "Operacion existosa"),
-            @ApiResponse(responseCode = "404", description = "Medico no encontrado"),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Medico no encontrado, con el id suministrado",
+                    content = @Content(
+                                mediaType = "application/json",
+                                schema =  @Schema(implementation = ErrorDTO.class)
+                    )
+            )
     })
     @Parameters(value = {
             @Parameter(name="id", description = "Este es el id unico del medico", required = true)
@@ -54,6 +65,28 @@ public class MedicoController {
     }
 
     @PostMapping
+    @Operation(
+            summary = "Guarda un medico",
+            description = "Con este método podemos enviar los datos mediante un body y realizar el guardado"
+    )
+    @ApiResponses( value = {
+            @ApiResponse(responseCode = "201", description = "Guardado exitoso"),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "El medico guardado ya se encuentra en la base de datos",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorDTO.class)
+                    )
+            )
+    })
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            description = "medico a crear",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = Medico.class)
+            )
+    )
     public ResponseEntity<Medico>  create(@Valid @RequestBody Medico medico) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
