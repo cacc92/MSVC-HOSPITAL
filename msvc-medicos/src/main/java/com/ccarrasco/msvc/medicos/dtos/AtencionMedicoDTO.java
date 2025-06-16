@@ -1,5 +1,6 @@
 package com.ccarrasco.msvc.medicos.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -13,7 +14,8 @@ import java.time.LocalDateTime;
 @Getter @Setter @ToString
 @NoArgsConstructor @AllArgsConstructor
 public class AtencionMedicoDTO {
-
+    @JsonIgnore
+    private Long idMedico;
     private LocalDateTime horaAtencion;
     private Integer costo;
     private String comentario;
