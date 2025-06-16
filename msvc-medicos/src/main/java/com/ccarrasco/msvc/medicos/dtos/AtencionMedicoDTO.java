@@ -1,5 +1,6 @@
 package com.ccarrasco.msvc.medicos.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
@@ -16,6 +17,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor @AllArgsConstructor
 @Schema(description = "DTO atencion medico")
 public class AtencionMedicoDTO {
+
+    @JsonIgnore
+    private Long idMedico;
 
     @Schema(description = "Fecha de atencion", example = "2024-10-01T00:00:00")
     private LocalDateTime horaAtencion;
