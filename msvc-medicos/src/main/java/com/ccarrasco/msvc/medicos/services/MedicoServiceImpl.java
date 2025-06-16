@@ -82,6 +82,7 @@ public class MedicoServiceImpl implements MedicoService {
 
 
                 AtencionMedicoDTO dto = new AtencionMedicoDTO();
+                dto.setIdMedico(medicoId);
                 dto.setHoraAtencion(atencion.getHoraAtencion());
                 dto.setComentario(atencion.getComentario());
                 dto.setCosto(atencion.getCosto());
