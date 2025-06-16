@@ -1,11 +1,15 @@
 package com.ccarrasco.msvc.medicos.controllers;
 
 import com.ccarrasco.msvc.medicos.dtos.AtencionMedicoDTO;
+import com.ccarrasco.msvc.medicos.dtos.ErrorDTO;
 import com.ccarrasco.msvc.medicos.models.entities.Medico;
 import com.ccarrasco.msvc.medicos.services.MedicoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -50,7 +54,18 @@ public class MedicoController {
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Se retorna el medico encontrado"),
-            @ApiResponse(responseCode = "400", description = "Error - Medico con ID no existe")
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Error - Medico con ID no existe",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorDTO.class)
+                            //examples = @ExampleObject(
+                            //        name = "ERROR DTO SIN CLASE",
+                            //        value = "{\"code\":\"200\", \"error\": \"mensaje de error\"}"
+                            //)
+                    )
+            )
     })
     @Parameters(value = {
             @Parameter(name = "id", description = "Este es el id unico de un medico", required = true)
@@ -62,6 +77,22 @@ public class MedicoController {
     }
 
     @PostMapping
+    @Operation(
+            summary = "Endpoint que me permite guardar un medico",
+            description = "Este endpoint debo mandar un body con el formato de Medico.class " +
+                    "y me permitirá realizar la creación de un medico"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Medico creado correctamente")
+    })
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            required = true,
+            description = "Este debe ser Json con los datos de medico",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = Medico.class)
+            )
+    )
     public ResponseEntity<Medico>  create(@Valid @RequestBody Medico medico) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
