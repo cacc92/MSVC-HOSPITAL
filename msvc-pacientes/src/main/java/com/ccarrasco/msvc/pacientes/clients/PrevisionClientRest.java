@@ -12,7 +12,7 @@ import java.util.List;
 @FeignClient(name = "msvc-prevision", url = "localhost:8082/api/v1/previsiones")
 public interface PrevisionClientRest {
 
-    @GetMapping
+    @GetMapping 
     List<Prevision> findAll();
 
     @GetMapping("/{id}")

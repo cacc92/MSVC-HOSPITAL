@@ -66,6 +66,9 @@ public class AtencionServiceImpl implements AtencionService {
             AtencionDTO atencionDTO = new AtencionDTO();
             atencionDTO.setMedico(medicoDTO);
             atencionDTO.setPaciente(pacienteDTO);
+            atencionDTO.setCosto(atencion.getCosto());
+            atencionDTO.setComentario(atencion.getComentario());
+            atencionDTO.setHoraAtencion(atencion.getHoraAtencion());
             return atencionDTO;
 
         }).toList();
